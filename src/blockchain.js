@@ -79,6 +79,9 @@ class Blockchain {
             self.chain.push(block);
             // Update the Height of the Chain
             self.height += 1;
+
+            //validate the chain after adding a new block
+            await self.validateChain();
             
             if (self.chain[self.height] == block) {
                 resolve(block);
