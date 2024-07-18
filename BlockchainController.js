@@ -117,6 +117,20 @@ class BlockchainController {
             
         });
     }
+    validateChain(){
+        this.app.get("/validateChain", async (req, res) => {
+            try {
+                const errors = await this.blockchain.validateChain();
+                if (errors.length > 0) {
+                    res.status(200).json({ errors });
+                } else {
+                    res.status(200).send("Blockchain is valid.");
+                }
+            } catch (error) {
+                res.status(500).send("An error occurred while validating the blockchain.");
+            }
+        });
+    }
 
 }
 
